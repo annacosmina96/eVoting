@@ -1,0 +1,78 @@
+﻿
+@model Presentation.ViewModels.AccountViewModel
+
+
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-form">
+            <div class="sign-in-htm">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { }))
+                {
+                    <div class="group">
+                        <label for="user" class="label">Email</label>
+                        @Html.EditorFor(model => model.LoginViewModel.Email, new { htmlAttributes = new { @class = "input" } })
+                        @Html.ValidationMessageFor(model => model.LoginViewModel.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+
+                        @if (TempData["Email"] != null)
+                        {
+                            <label for="user" class="label" style="color:red;">@TempData["Email"]</label>
+                        }
+                    </div>
+
+
+
+
+                    <div class="group">
+                        <label for="user" class="label">Password</label>
+                        @Html.EditorFor(model => model.LoginViewModel.Password, new { htmlAttributes = new { @class = "input" } })
+                        @Html.ValidationMessageFor(model => model.LoginViewModel.Password, "", new { @class = "text-danger" })
+                        @if (TempData["Password"] != null)
+                        {
+                            <label for="user" class="label" style="color:red;">@TempData["Password"]</label>
+                        }
+                    </div>
+                 
+                    <div class="group">
+                        <input type="submit" value="Login" class="button" />
+                    </div>
+
+                }
+            </div>
+
+
+            <div class="sign-up-htm">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { }))
+                {
+
+
+                    <div class="group">
+                        <label for="user" class="label">Email</label>
+                        @Html.EditorFor(model => model.RegisterViewModel.Email, new { htmlAttributes = new { @class = "input" } })
+                        @Html.ValidationMessageFor(model => model.RegisterViewModel.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+                    </div>
+                  
+
+
+
+                    <div class="group">
+                        <label for="user" class="label">CNP</label>
+                        @Html.EditorFor(model => model.RegisterViewModel.CNP, new { htmlAttributes = new { @class = "input" } })
+                        @Html.ValidationMessageFor(model => model.RegisterViewModel.CNP, "", new { @class = "text-danger" })
+                    </div>
+         
+                    <div class="group">
+                        <input type="submit" value="Sign up" class="button" />
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
